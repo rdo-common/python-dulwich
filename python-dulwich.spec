@@ -31,9 +31,7 @@ Mrs. Git live in the Monty Python sketch.
 
 %prep
 %setup -q -n %{srcname}-%{version}
-sed -i -e '/^#!\//, 1d' docs/tutorial/test.py
-rm docs/tutorial/.gitignore
-chmod -x docs/tutorial/test.py
+
 
 
 %build
