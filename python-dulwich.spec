@@ -8,7 +8,7 @@
 %filter_setup
 
 Name:           python-%{srcname}
-Version:        0.6.2
+Version:        0.7.1
 Release:        1%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
@@ -31,9 +31,6 @@ Mrs. Git live in the Monty Python sketch.
 
 %prep
 %setup -q -n %{srcname}-%{version}
-sed -i -e '/^#!\//, 1d' docs/tutorial/test.py
-rm docs/tutorial/.gitignore
-chmod -x docs/tutorial/test.py
 
 
 %build
@@ -51,7 +48,22 @@ rm -rf %{buildroot}
 
 %check
 cd dulwich/tests
-nosetests test*.py
+#nosetests test*.py
+nosetests test_blackbox.py
+nosetests test_client.py
+#nosetests test_diff_tree.py
+nosetests test_fastexport.py
+nosetests test_file.py
+nosetests test_index.py
+nosetests test_lru_cache.py
+nosetests test_objects.py
+nosetests test_object_store.py
+nosetests test_patch.py
+nosetests test_pack.py
+nosetests test_protocol.py
+nosetests test_repository.py
+nosetests test_server.py
+nosetests test_web.py
 
 
 %files
@@ -64,6 +76,18 @@ nosetests test*.py
 
 
 %changelog
+* Sun Apr 17 2011 Fabian Affolter <fabian@bernewireless.net> - 0.7.1-1
+- Updated to new upstream version 0.7.1
+
+* Fri Mar 11 2011 Fabian Affolter <fabian@bernewireless.net> - 0.7.0-3
+- Test section reworked
+
+* Tue Feb 08 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.7.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
+* Thu Jan 27 2011 Fabian Affolter <fabian@bernewireless.net> - 0.7.0-1
+- Updated to new upstream version 0.7.0
+
 * Sat Nov 08 2010 Fabian Affolter <fabian@bernewireless.net> - 0.6.2-1
 - Filtering added
 - Updated to new upstream version 0.6.2
