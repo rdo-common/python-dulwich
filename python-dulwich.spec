@@ -8,7 +8,7 @@
 %filter_setup
 
 Name:           python-%{srcname}
-Version:        0.7.1
+Version:        0.8.0
 Release:        1%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
@@ -76,43 +76,46 @@ nosetests test_web.py
 
 
 %changelog
-* Sun Apr 17 2011 Fabian Affolter <fabian@bernewireless.net> - 0.7.1-1
+* Thu Oct 13 2011 Fabian Affolter <mail@fabian-affolter.ch> - 0.8.0-1
+- Updated to new upstream version 0.8.0
+
+* Sun Apr 17 2011 Fabian Affolter <mail@fabian-affolter.ch> - 0.7.1-1
 - Updated to new upstream version 0.7.1
 
-* Fri Mar 11 2011 Fabian Affolter <fabian@bernewireless.net> - 0.7.0-3
+* Fri Mar 11 2011 Fabian Affolter <mail@fabian-affolter.ch> - 0.7.0-3
 - Test section reworked
 
 * Tue Feb 08 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.7.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 
-* Thu Jan 27 2011 Fabian Affolter <fabian@bernewireless.net> - 0.7.0-1
+* Thu Jan 27 2011 Fabian Affolter <mail@fabian-affolter.ch> - 0.7.0-1
 - Updated to new upstream version 0.7.0
 
-* Sat Nov 08 2010 Fabian Affolter <fabian@bernewireless.net> - 0.6.2-1
+* Sat Nov 08 2010 Fabian Affolter <mail@fabian-affolter.ch> - 0.6.2-1
 - Filtering added
 - Updated to new upstream version 0.6.2
 
-* Wed Sep 01 2010 Fabian Affolter <fabian@bernewireless.net> - 0.6.1-1
+* Wed Sep 01 2010 Fabian Affolter <mail@fabian-affolter.ch> - 0.6.1-1
 - Fixed grep parameter
 - Run all test now
 - Updated to new upstream version 0.6.1
 
-* Sat Jul 03 2010 Fabian Affolter <fabian@bernewireless.net> - 0.6.0-3
+* Sat Jul 03 2010 Fabian Affolter <mail@fabian-affolter.ch> - 0.6.0-3
 - Removed exec permission from test.py
 - Added python-nose
 
-* Fri Jun 25 2010 Fabian Affolter <fabian@bernewireless.net> - 0.6.0-2
+* Fri Jun 25 2010 Fabian Affolter <mail@fabian-affolter.ch> - 0.6.0-2
 - Changed summary
 - Change to srcname
 - Fixed rpmlint issue
 - Added check section and exclude the tests directory
 
-* Thu Jun 17 2010 Fabian Affolter <fabian@bernewireless.net> - 0.6.0-1
+* Thu Jun 17 2010 Fabian Affolter <mail@fabian-affolter.ch> - 0.6.0-1
 - Fixed some rpmlint issues
 - Added docs directory
 - Updated to new upstream version 0.6.0
 
-* Wed Apr 28 2010 Fabian Affolter <fabian@bernewireless.net> - 0.5.0-2
+* Wed Apr 28 2010 Fabian Affolter <mail@fabian-affolter.ch> - 0.5.0-2
 - Doc added
 - Added BR setuptools
 
