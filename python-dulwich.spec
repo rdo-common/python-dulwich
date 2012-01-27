@@ -48,22 +48,7 @@ rm -rf %{buildroot}
 
 %check
 cd dulwich/tests
-#nosetests test*.py
-nosetests test_blackbox.py
-nosetests test_client.py
-#nosetests test_diff_tree.py
-nosetests test_fastexport.py
-nosetests test_file.py
-nosetests test_index.py
-nosetests test_lru_cache.py
-nosetests test_objects.py
-nosetests test_object_store.py
-nosetests test_patch.py
-nosetests test_pack.py
-nosetests test_protocol.py
-nosetests test_repository.py
-nosetests test_server.py
-nosetests test_web.py
+nosetests test*.py
 
 
 %files
