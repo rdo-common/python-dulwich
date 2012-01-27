@@ -76,8 +76,11 @@ nosetests test_web.py
 
 
 %changelog
-* Fri Dec 23 2011 Fabian Affolter <mail@fabian-affolter.ch> - 0.8.2-1
+* Fri Jan 27 2012 Fabian Affolter <mail@fabian-affolter.ch> - 0.8.2-1
 - Updated to new upstream version 0.8.2
+
+* Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
 * Thu Oct 13 2011 Fabian Affolter <mail@fabian-affolter.ch> - 0.8.0-1
 - Updated to new upstream version 0.8.0
