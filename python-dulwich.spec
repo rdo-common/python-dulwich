@@ -21,7 +21,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
 BuildRequires:  python-nose
-
+BuildRequires:  python-unittest2
 
 %description
 Dulwich is a pure-Python implementation of the Git file formats and
@@ -61,6 +61,9 @@ nosetests test*.py
 
 
 %changelog
+* Sat Jan 28 2012 Fabian Affolter <mail@fabian-affolter.ch> - 0.8.2-2
+- Added missing BR
+
 * Fri Jan 27 2012 Fabian Affolter <mail@fabian-affolter.ch> - 0.8.2-1
 - Updated to new upstream version 0.8.2
 
