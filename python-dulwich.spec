@@ -8,7 +8,7 @@
 %filter_setup
 
 Name:           python-%{srcname}
-Version:        0.8.2
+Version:        0.8.3
 Release:        1%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
@@ -61,6 +61,9 @@ nosetests test*.py
 
 
 %changelog
+* Fri Feb 24 2012 Fabian Affolter <mail@fabian-affolter.ch> - 0.8.3-1
+- Updated to new upstream version 0.8.3
+
 * Fri Jan 27 2012 Fabian Affolter <mail@fabian-affolter.ch> - 0.8.2-1
 - Updated to new upstream version 0.8.2
 
