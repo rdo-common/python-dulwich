@@ -9,7 +9,7 @@
 
 Name:           python-%{srcname}
 Version:        0.8.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
 Group:          Development/Libraries
@@ -21,7 +21,10 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
 BuildRequires:  python-nose
+
+%if 0%{?rhel} < 7 || 0%{?fedora} < 14
 BuildRequires:  python-unittest2
+%endif
 
 %description
 Dulwich is a pure-Python implementation of the Git file formats and
@@ -61,6 +64,9 @@ nosetests test*.py
 
 
 %changelog
+* Sat Jun 23 2012 Matěj Cepl <mcepl@redhat.com> - 0.8.5-2
+- We don’t need python-unittest2 anymore.
+
 * Fri Apr 13 2012 Fabian Affolter <mail@fabian-affolter.ch> - 0.8.5-1
 - Updated to new upstream version 0.8.5
 
