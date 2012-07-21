@@ -9,7 +9,7 @@
 
 Name:           python-%{srcname}
 Version:        0.8.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
 Group:          Development/Libraries
@@ -64,6 +64,9 @@ nosetests test*.py
 
 
 %changelog
+* Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.5-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Sat Jun 23 2012 Matěj Cepl <mcepl@redhat.com> - 0.8.5-2
 - We don’t need python-unittest2 anymore.
 
