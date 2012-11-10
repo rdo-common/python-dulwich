@@ -8,8 +8,8 @@
 %filter_setup
 
 Name:           python-%{srcname}
-Version:        0.8.5
-Release:        3%{?dist}
+Version:        0.8.6
+Release:        1%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
 Group:          Development/Libraries
@@ -31,28 +31,22 @@ Dulwich is a pure-Python implementation of the Git file formats and
 protocols. The project is named after the village in which Mr. and
 Mrs. Git live in the Monty Python sketch.
 
-
 %prep
 %setup -q -n %{srcname}-%{version}
 
-
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
-
 
 %install
 rm -rf %{buildroot}
 %{__python} setup.py install --skip-build --root %{buildroot}
 
-
 %clean
 rm -rf %{buildroot}
-
 
 %check
 cd dulwich/tests
 nosetests test*.py
-
 
 %files
 %defattr(-,root,root,-)
@@ -62,8 +56,10 @@ nosetests test*.py
 %{python_sitearch}/%{srcname}*
 %exclude %{python_sitearch}/%{srcname}/tests*
 
-
 %changelog
+* Sat Nov 10 2012 Fabian Affolter <mail@fabian-affolter.ch> - 0.8.6-1
+- Updated to new upstream version 0.8.6
+
 * Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.5-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
