@@ -9,7 +9,7 @@
 
 Name:           python-%{srcname}
 Version:        0.8.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
 Group:          Development/Libraries
@@ -57,6 +57,9 @@ nosetests test*.py
 %exclude %{python_sitearch}/%{srcname}/tests*
 
 %changelog
+* Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.7-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Tue Jan 15 2013 Fabian Affolter <mail@fabian-affolter.ch> - 0.8.7-1
 - Updated to new upstream version 0.8.7
 
