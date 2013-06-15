@@ -8,12 +8,12 @@
 %filter_setup
 
 Name:           python-%{srcname}
-Version:        0.8.7
-Release:        2%{?dist}
+Version:        0.9.0
+Release:        1%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
 Group:          Development/Libraries
-License:        GPLv2+
+License:        GPLv2+ or ASL 2.0
 URL:            http://samba.org/~jelmer/dulwich/
 Source0:        http://samba.org/~jelmer/%{srcname}/%{srcname}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -57,6 +57,10 @@ nosetests test*.py
 %exclude %{python_sitearch}/%{srcname}/tests*
 
 %changelog
+* Sat Jun 15 2013 Fabian Affolter <mail@fabian-affolter.ch> - 0.9.0-1
+- Updated to new upstream version 0.9.0
+- Now dual-licensed GPLv2+ or ASL 2.0
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.7-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
