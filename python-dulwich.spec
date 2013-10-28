@@ -1,22 +1,16 @@
-%if ! (0%{?fedora} > 12 || 0%{?rhel} > 5)
-%{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
-%endif
-
 %global srcname dulwich
 
 %filter_provides_in %{python_sitearch}
 %filter_setup
 
 Name:           python-%{srcname}
-Version:        0.9.0
-Release:        2%{?dist}
+Version:        0.9.1
+Release:        1%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
-Group:          Development/Libraries
 License:        GPLv2+ or ASL 2.0
 URL:            http://samba.org/~jelmer/dulwich/
 Source0:        http://samba.org/~jelmer/%{srcname}/%{srcname}-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
@@ -35,28 +29,26 @@ Mrs. Git live in the Monty Python sketch.
 %setup -q -n %{srcname}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__python} setup.py build
+CFLAGS="%{optflags}" %{__python2} setup.py build
 
 %install
-rm -rf %{buildroot}
-%{__python} setup.py install --skip-build --root %{buildroot}
-
-%clean
-rm -rf %{buildroot}
+%{__python2} setup.py install --skip-build --root %{buildroot}
 
 %check
 cd dulwich/tests
 nosetests test*.py
 
 %files
-%defattr(-,root,root,-)
 %doc AUTHORS COPYING HACKING NEWS README docs/
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
-%{python_sitearch}/%{srcname}*
-%exclude %{python_sitearch}/%{srcname}/tests*
+%{python2_sitearch}/%{srcname}*
+%exclude %{python2_sitearch}/%{srcname}/tests*
 
 %changelog
+* Mon Oct 28 2013 Fabian Affolter <mail@fabian-affolter.ch> - 0.9.1-1
+- Updated to new upstream version 0.9.1
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
@@ -112,7 +104,7 @@ nosetests test*.py
 * Thu Jan 27 2011 Fabian Affolter <mail@fabian-affolter.ch> - 0.7.0-1
 - Updated to new upstream version 0.7.0
 
-* Sat Nov 08 2010 Fabian Affolter <mail@fabian-affolter.ch> - 0.6.2-1
+* Mon Nov 08 2010 Fabian Affolter <mail@fabian-affolter.ch> - 0.6.2-1
 - Filtering added
 - Updated to new upstream version 0.6.2
 
