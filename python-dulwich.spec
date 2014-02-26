@@ -27,6 +27,7 @@ Mrs. Git live in the Monty Python sketch.
 
 %prep
 %setup -q -n %{srcname}-%{version}
+rm -rf %{srcname}.egg-info
 
 %build
 CFLAGS="%{optflags}" %{__python2} setup.py build
@@ -39,7 +40,7 @@ CFLAGS="%{optflags}" %{__python2} setup.py build
 #nosetests test*.py
 
 %files
-%doc AUTHORS COPYING HACKING NEWS README docs/
+%doc COPYING NEWS README docs/
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
 %{python2_sitearch}/%{srcname}*
