@@ -40,7 +40,7 @@ CFLAGS="%{optflags}" %{__python2} setup.py build
 #nosetests test*.py
 
 %files
-%doc COPYING NEWS README docs/
+%doc COPYING NEWS README.md docs/
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
 %{python2_sitearch}/%{srcname}*
