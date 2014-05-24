@@ -4,7 +4,7 @@
 %filter_setup
 
 Name:           python-%{srcname}
-Version:        0.9.5
+Version:        0.9.6
 Release:        1%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
@@ -47,6 +47,9 @@ CFLAGS="%{optflags}" %{__python2} setup.py build
 %exclude %{python2_sitearch}/%{srcname}/tests*
 
 %changelog
+* Sat May 24 2014 Fabian Affolter <mail@fabian-affolter.ch> - 0.9.6-1
+- Update to new upstream version 0.9.6
+
 * Wed Feb 26 2014 Fabian Affolter <mail@fabian-affolter.ch> - 0.9.5-1
 - Tests are currently not working
 - Update to new upstream version 0.9.5
