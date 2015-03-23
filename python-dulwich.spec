@@ -4,7 +4,7 @@
 %filter_setup
 
 Name:           python-%{srcname}
-Version:        0.9.9
+Version:        0.10.0
 Release:        1%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
@@ -47,6 +47,10 @@ CFLAGS="%{optflags}" %{__python2} setup.py build
 %exclude %{python2_sitearch}/%{srcname}/tests*
 
 %changelog
+* Mon Mar 23 2015 Fabian Affolter <mail@fabian-affolter.ch> - 0.10.0-1
+- Fix for CVE-2014-9706 (rhbz#1204889, rhbz#1204890, and rhbz#1204891)
+- Update to new upstream version 0.10.0
+
 * Mon Mar 23 2015 Fabian Affolter <mail@fabian-affolter.ch> - 0.9.9-1
 - Update to new upstream version 0.9.9
 
