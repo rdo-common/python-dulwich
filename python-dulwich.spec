@@ -4,8 +4,8 @@
 %filter_setup
 
 Name:           python-%{srcname}
-Version:        0.9.7
-Release:        2%{?dist}
+Version:        0.9.9
+Release:        1%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
@@ -47,6 +47,9 @@ CFLAGS="%{optflags}" %{__python2} setup.py build
 %exclude %{python2_sitearch}/%{srcname}/tests*
 
 %changelog
+* Mon Mar 23 2015 Fabian Affolter <mail@fabian-affolter.ch> - 0.9.9-1
+- Update to new upstream version 0.9.9
+
 * Sun Aug 17 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.7-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
