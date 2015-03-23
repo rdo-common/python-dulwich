@@ -15,6 +15,8 @@ Source0:        https://pypi.python.org/packages/source/d/%{srcname}/%{srcname}-
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
 BuildRequires:  python-nose
+BuildRequires:  python-sphinx
+BuildRequires:  python-docutils
 
 %if 0%{?rhel} < 7 || 0%{?fedora} < 14
 BuildRequires:  python-unittest2
@@ -31,16 +33,24 @@ rm -rf %{srcname}.egg-info
 
 %build
 CFLAGS="%{optflags}" %{__python2} setup.py build
+pushd docs
+# Not using {smp_flags} as sphinx fails with it from time to time
+make html
+popd
 
 %install
 %{__python2} setup.py install --skip-build --root %{buildroot}
+# Remove extra copy of text docs
+rm -rf docs/build/html/_sources
+rm -f docs/build/html/{.buildinfo,objects.inv}
+rm -rf %{buildroot}%{python2_sitearch}/docs/tutorial/
 
 #%check
 #cd dulwich/tests
 #nosetests test*.py
 
 %files
-%doc COPYING NEWS README.md docs/tutorial/
+%doc AUTHORS COPYING HACKING NEWS README.md docs/build/html
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
 %{python2_sitearch}/%{srcname}*
