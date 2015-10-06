@@ -4,7 +4,7 @@
 %filter_setup
 
 Name:           python-%{srcname}
-Version:        0.11.1
+Version:        0.11.2
 Release:        1%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
@@ -50,13 +50,17 @@ rm -rf %{buildroot}%{python2_sitearch}/docs/tutorial/
 #nosetests test*.py
 
 %files
-%doc AUTHORS COPYING HACKING NEWS README.md docs/build/html
+%doc AUTHORS COPYING docs/build/html
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
 %{python2_sitearch}/%{srcname}*
 %exclude %{python2_sitearch}/%{srcname}/tests*
 
 %changelog
+* Tue Oct 06 2015 Fabian Affolter <mail@fabian-affolter.ch> - 0.11.2-1
+- Update docs
+- Update to new upstream version 0.11.2
+
 * Tue Oct 06 2015 Fabian Affolter <mail@fabian-affolter.ch> - 0.11.1-1
 - Update to new upstream version 0.11.1
 
