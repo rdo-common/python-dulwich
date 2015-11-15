@@ -1,22 +1,27 @@
 %global srcname dulwich
+%global sum A python implementation of the Git file formats and protocols
 
-%filter_provides_in %{python_sitearch}
+%filter_provides_in %{python2_sitearch}
+%filter_provides_in %{python3_sitearch}
 %filter_setup
 
 Name:           python-%{srcname}
 Version:        0.11.2
-Release:        1%{?dist}
-Summary:        A python implementation of the Git file formats and protocols
+Release:        3%{?dist}
+Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
 URL:            http://samba.org/~jelmer/dulwich/
 Source0:        https://pypi.python.org/packages/source/d/%{srcname}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  python2-devel
-BuildRequires:  python-setuptools
-BuildRequires:  python-nose
-BuildRequires:  python-sphinx
-BuildRequires:  python-docutils
+BuildRequires:  python3-devel
+BuildRequires:  python2-nose
+BuildRequires:  python2-nose
+BuildRequires:  python2-sphinx
+BuildRequires:  python2-docutils
+BuildRequires:  python3-sphinx
+BuildRequires:  python3-docutils
 
 %if 0%{?rhel} < 7 || 0%{?fedora} < 14
 BuildRequires:  python-unittest2
@@ -27,37 +32,76 @@ Dulwich is a pure-Python implementation of the Git file formats and
 protocols. The project is named after the village in which Mr. and
 Mrs. Git live in the Monty Python sketch.
 
+%package -n python2-%{srcname}
+Summary:        %{sum}
+%{?python_provide:%python_provide python2-%{srcname}}
+
+%description -n python2-%{srcname}
+Dulwich is a pure-Python implementation of the Git file formats and
+protocols. The project is named after the village in which Mr. and
+Mrs. Git live in the Monty Python sketch.
+
+%package -n python3-%{srcname}
+Summary:        %{sum}
+%{?python_provide:%python_provide python3-%{srcname}}
+
+%description -n python3-%{srcname}
+Dulwich is a pure-Python implementation of the Git file formats and
+protocols. The project is named after the village in which Mr. and
+Mrs. Git live in the Monty Python sketch.
+
 %prep
-%setup -q -n %{srcname}-%{version}
-rm -rf %{srcname}.egg-info
+%autosetup -n %{srcname}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__python2} setup.py build
+%py2_build
+pushd docs
+# Not using {smp_flags} as sphinx fails with it from time to time
+make html
+popd
+%py3_build
 pushd docs
 # Not using {smp_flags} as sphinx fails with it from time to time
 make html
 popd
 
 %install
-%{__python2} setup.py install --skip-build --root %{buildroot}
+%py2_install
 # Remove extra copy of text docs
 rm -rf docs/build/html/_sources
 rm -f docs/build/html/{.buildinfo,objects.inv}
 rm -rf %{buildroot}%{python2_sitearch}/docs/tutorial/
+%py3_install
+# Remove extra copy of text docs
+rm -rf docs/build/html/_sources
+rm -f docs/build/html/{.buildinfo,objects.inv}
+rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 
 #%check
 #cd dulwich/tests
 #nosetests test*.py
 
-%files
-%doc AUTHORS COPYING docs/build/html
+%files -n python2-%{srcname}
+%doc AUTHORS docs/build/html
+%license COPYING
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
 %{python2_sitearch}/%{srcname}*
 %exclude %{python2_sitearch}/%{srcname}/tests*
 
+%files -n python3-%{srcname}
+%doc AUTHORS docs/build/html
+%license COPYING
+%{_bindir}/dul-*
+%{_bindir}/%{srcname}
+%{python3_sitearch}/%{srcname}*
+%exclude %{python3_sitearch}/%{srcname}/tests*
+
 %changelog
-* Tue Oct 06 2015 Fabian Affolter <mail@fabian-affolter.ch> - 0.11.2-1
+* Sat Nov 14 2015 Fabian Affolter <mail@fabian-affolter.ch> - 0.11.2-3
+- Cleanup and py3
+
+* Tue Oct 06 2015 Fabian Affolter <mail@fabian-affolter.ch> - 0.11.2-2
 - Update docs
 - Update to new upstream version 0.11.2
 
