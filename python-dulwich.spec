@@ -6,8 +6,8 @@
 %filter_setup
 
 Name:           python-%{srcname}
-Version:        0.11.2
-Release:        3%{?dist}
+Version:        0.12.0
+Release:        1%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
@@ -98,6 +98,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Tue Feb 02 2016 Fabian Affolter <mail@fabian-affolter.ch> - 0.12.0-1
+- Update to new upstream version 0.12.0
+
 * Sat Nov 14 2015 Fabian Affolter <mail@fabian-affolter.ch> - 0.11.2-3
 - Cleanup and py3
 
