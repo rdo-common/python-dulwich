@@ -1,9 +1,8 @@
 %global srcname dulwich
 %global sum A python implementation of the Git file formats and protocols
 
-%filter_provides_in %{python2_sitearch}
-%filter_provides_in %{python3_sitearch}
-%filter_setup
+%global __provides_exclude_from ^(%{python2_sitearch}/.*\\.so)$
+%global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
 Version:        0.12.0
