@@ -62,11 +62,14 @@ Mrs. Git live in the Monty Python sketch.
 
 %build
 %py2_build
-pushd docs
 %py3_build
+pushd docs
+# Not using {smp_flags} as sphinx fails with it from time to time
+make html
 rm -rf build/html/{.buildinfo,doctrees}
 sphinx-build-3 -b html -d py3/doctrees . py3/html
 rm -rf py3/html/.buildinfo
+popd
 
 %install
 %py2_install
