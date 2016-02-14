@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        0.12.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
@@ -31,9 +31,16 @@ Dulwich is a pure-Python implementation of the Git file formats and
 protocols. The project is named after the village in which Mr. and
 Mrs. Git live in the Monty Python sketch.
 
+%package -n %{srcname}-core
+Summary:        Shared files for Dulwich
+
+%description -n %{srcname}-core
+Files to ensure functionality for both python2 and python3 packages of Dulwich.
+
 %package -n python2-%{srcname}
 Summary:        %{sum}
 %{?python_provide:%python_provide python2-%{srcname}}
+Requires:       %{srcname}-core%{?_isa} = %{version}-%{release}
 
 %description -n python2-%{srcname}
 Dulwich is a pure-Python implementation of the Git file formats and
@@ -43,6 +50,7 @@ Mrs. Git live in the Monty Python sketch.
 %package -n python3-%{srcname}
 Summary:        %{sum}
 %{?python_provide:%python_provide python3-%{srcname}}
+Requires:       %{srcname}-core%{?_isa} = %{version}-%{release}
 
 %description -n python3-%{srcname}
 Dulwich is a pure-Python implementation of the Git file formats and
@@ -55,48 +63,45 @@ Mrs. Git live in the Monty Python sketch.
 %build
 %py2_build
 pushd docs
-# Not using {smp_flags} as sphinx fails with it from time to time
-make html
-popd
 %py3_build
-pushd docs
-# Not using {smp_flags} as sphinx fails with it from time to time
-make html
-popd
+rm -rf build/html/{.buildinfo,doctrees}
+sphinx-build-3 -b html -d py3/doctrees . py3/html
+rm -rf py3/html/.buildinfo
 
 %install
 %py2_install
-# Remove extra copy of text docs
-rm -rf docs/build/html/_sources
-rm -f docs/build/html/{.buildinfo,objects.inv}
-rm -rf %{buildroot}%{python2_sitearch}/docs/tutorial/
 %py3_install
 # Remove extra copy of text docs
-rm -rf docs/build/html/_sources
-rm -f docs/build/html/{.buildinfo,objects.inv}
+rm -rf %{buildroot}%{python2_sitearch}/docs/tutorial/
 rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 
-#%check
-#cd dulwich/tests
-#nosetests test*.py
+%check
+# FIXME test_non_ascii fails cause of unicode issue
+nosetests -e non_ascii -w dulwich/tests -v
 
-%files -n python2-%{srcname}
-%doc AUTHORS docs/build/html
+%files -n %{srcname}-core
+%doc AUTHORS README.md
 %license COPYING
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
+
+%files -n python2-%{srcname}
+%doc docs/build/html/
 %{python2_sitearch}/%{srcname}*
 %exclude %{python2_sitearch}/%{srcname}/tests*
 
 %files -n python3-%{srcname}
-%doc AUTHORS docs/build/html
-%license COPYING
-%{_bindir}/dul-*
-%{_bindir}/%{srcname}
+%doc docs/py3/html/
 %{python3_sitearch}/%{srcname}*
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Tue Feb 02 2016 Raphael Groner <projects.rg@smart.ms> - 0.12.0-2
+- Generate documentation for python3
+- Split binaries in subpackage to avoid duplication
+- Execute tests
+- Fix rhbz#1304050
+
 * Tue Feb 02 2016 Fabian Affolter <mail@fabian-affolter.ch> - 0.12.0-1
 - Update to new upstream version 0.12.0
 
