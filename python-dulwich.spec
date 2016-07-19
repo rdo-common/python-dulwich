@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        0.12.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
@@ -99,6 +99,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.12.0-3
+- https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
+
 * Tue Feb 02 2016 Raphael Groner <projects.rg@smart.ms> - 0.12.0-2
 - Generate documentation for python3
 - Split binaries in subpackage to avoid duplication
