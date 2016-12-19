@@ -5,13 +5,13 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.12.0
-Release:        3%{?dist}
+Version:        0.15.0
+Release:        1%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
 URL:            http://samba.org/~jelmer/dulwich/
-Source0:        https://pypi.python.org/packages/source/d/%{srcname}/%{srcname}-%{version}.tar.gz
+Source0:        https://pypi.io/packages/source/d/%{srcname}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  python2-devel
 BuildRequires:  python3-devel
@@ -99,6 +99,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Mon Dec 19 2016 Alan Pevec <alan.pevec@redhat.com> 0.15.0-1
+- Update to 0.15.0
+
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.12.0-3
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
 
