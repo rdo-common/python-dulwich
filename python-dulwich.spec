@@ -14,13 +14,10 @@ URL:            http://samba.org/~jelmer/dulwich/
 Source0:        https://pypi.io/packages/source/d/%{srcname}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  python2-devel
-BuildRequires:  python3-devel
 BuildRequires:  python2-nose
 BuildRequires:  python2-nose
 BuildRequires:  python-sphinx
 BuildRequires:  python-docutils
-BuildRequires:  python3-sphinx
-BuildRequires:  python3-docutils
 
 %if 0%{?rhel} < 7 || 0%{?fedora} < 14
 BuildRequires:  python-unittest2
@@ -47,36 +44,21 @@ Dulwich is a pure-Python implementation of the Git file formats and
 protocols. The project is named after the village in which Mr. and
 Mrs. Git live in the Monty Python sketch.
 
-%package -n python3-%{srcname}
-Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
-Requires:       %{srcname}-core%{?_isa} = %{version}-%{release}
-
-%description -n python3-%{srcname}
-Dulwich is a pure-Python implementation of the Git file formats and
-protocols. The project is named after the village in which Mr. and
-Mrs. Git live in the Monty Python sketch.
-
 %prep
 %autosetup -n %{srcname}-%{version}
 
 %build
 %py2_build
-%py3_build
 pushd docs
 # Not using {smp_flags} as sphinx fails with it from time to time
 make html
 rm -rf build/html/{.buildinfo,doctrees}
-sphinx-build-3 -b html -d py3/doctrees . py3/html
-rm -rf py3/html/.buildinfo
 popd
 
 %install
 %py2_install
-%py3_install
 # Remove extra copy of text docs
 rm -rf %{buildroot}%{python2_sitearch}/docs/tutorial/
-rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 
 #%check
 # FIXME test_non_ascii fails cause of unicode issue
@@ -92,11 +74,6 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %doc docs/build/html/
 %{python2_sitearch}/%{srcname}*
 %exclude %{python2_sitearch}/%{srcname}/tests*
-
-%files -n python3-%{srcname}
-%doc docs/py3/html/
-%{python3_sitearch}/%{srcname}*
-%exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
 * Mon Dec 19 2016 Alan Pevec <alan.pevec@redhat.com> 0.15.0-1
