@@ -13,6 +13,9 @@ License:        GPLv2+ or ASL 2.0
 URL:            http://samba.org/~jelmer/dulwich/
 Source0:        https://pypi.io/packages/source/d/%{srcname}/%{srcname}-%{version}.tar.gz
 
+# https://bugs.launchpad.net/reno/+bug/1655719
+Patch0001: 0001-handle-deleted-files-when-getting-unstaged-changes.patch
+
 BuildRequires:  python2-devel
 BuildRequires:  python2-nose
 BuildRequires:  python2-nose
@@ -45,7 +48,7 @@ protocols. The project is named after the village in which Mr. and
 Mrs. Git live in the Monty Python sketch.
 
 %prep
-%autosetup -n %{srcname}-%{version}
+%autosetup -n %{srcname}-%{version} -p1
 
 %build
 %py2_build
@@ -78,6 +81,8 @@ rm -rf %{buildroot}%{python2_sitearch}/docs/tutorial/
 %changelog
 * Thu Jan 12 2017 Alan Pevec <alan.pevec@redhat.com> 0.16.1-1
 - Update to 0.16.1
+- handle deleted files when getting unstaged changes
+  https://bugs.launchpad.net/reno/+bug/1655719
 
 * Mon Dec 19 2016 Alan Pevec <alan.pevec@redhat.com> 0.15.0-1
 - Update to 0.15.0

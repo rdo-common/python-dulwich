@@ -1,0 +1,78 @@
+From c9350d7f8efe946b2e06a78ee98f551bb928c05d Mon Sep 17 00:00:00 2001
+From: Doug Hellmann <doug@doughellmann.com>
+Date: Wed, 11 Jan 2017 15:37:25 -0500
+Subject: [PATCH] handle deleted files when getting unstaged changes
+
+If one of the changes that hasn't been staged involves deleting a file,
+blob_from_path_and_stat() throws an OSError. Trap the error and treat
+the deleted file as a change by emitting the name of the file.
+
+This bug was reported downstream against reno as
+https://bugs.launchpad.net/reno/+bug/1655719
+
+Signed-off-by: Doug Hellmann <doug@doughellmann.com>
+(cherry picked from commit 539cd289deff42b18746aa97ed92b388461d79fb)
+---
+ dulwich/index.py            | 12 ++++++++++--
+ dulwich/tests/test_index.py | 21 +++++++++++++++++++++
+ 2 files changed, 31 insertions(+), 2 deletions(-)
+
+diff --git a/dulwich/index.py b/dulwich/index.py
+index 4c795bd..1f5d6e8 100644
+--- a/dulwich/index.py
++++ b/dulwich/index.py
+@@ -539,9 +539,17 @@ def get_unstaged_changes(index, root_path):
+ 
+     for tree_path, entry in index.iteritems():
+         full_path = _tree_to_fs_path(root_path, tree_path)
+-        blob = blob_from_path_and_stat(full_path, os.lstat(full_path))
+-        if blob.id != entry.sha:
++        try:
++            blob = blob_from_path_and_stat(full_path, os.lstat(full_path))
++        except OSError as e:
++            if e.errno != errno.ENOENT:
++                raise
++            # The file was removed, so we assume that counts as
++            # different from whatever file used to exist.
+             yield tree_path
++        else:
++            if blob.id != entry.sha:
++                yield tree_path
+ 
+ 
+ os_sep_bytes = os.sep.encode('ascii')
+diff --git a/dulwich/tests/test_index.py b/dulwich/tests/test_index.py
+index 45e31a3..c01f1b2 100644
+--- a/dulwich/tests/test_index.py
++++ b/dulwich/tests/test_index.py
+@@ -462,6 +462,27 @@ class GetUnstagedChangesTests(TestCase):
+ 
+             self.assertEqual(list(changes), [b'foo1'])
+ 
++    def test_get_unstaged_deleted_changes(self):
++        """Unit test for get_unstaged_changes."""
++
++        repo_dir = tempfile.mkdtemp()
++        self.addCleanup(shutil.rmtree, repo_dir)
++        with Repo.init(repo_dir) as repo:
++
++            # Commit a dummy file then remove it
++            foo1_fullpath = os.path.join(repo_dir, 'foo1')
++            with open(foo1_fullpath, 'wb') as f:
++                f.write(b'origstuff')
++
++            repo.stage(['foo1'])
++            repo.do_commit(b'test status', author=b'', committer=b'')
++
++            os.unlink(foo1_fullpath)
++
++            changes = get_unstaged_changes(repo.open_index(), repo_dir)
++
++            self.assertEqual(list(changes), [b'foo1'])
++
+ 
+ class TestValidatePathElement(TestCase):
+ 
+-- 
+2.9.3
+
