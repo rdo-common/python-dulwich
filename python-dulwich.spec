@@ -5,7 +5,7 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.15.0
+Version:        0.16.1
 Release:        1%{?dist}
 Summary:        %{sum}
 
@@ -76,6 +76,9 @@ rm -rf %{buildroot}%{python2_sitearch}/docs/tutorial/
 %exclude %{python2_sitearch}/%{srcname}/tests*
 
 %changelog
+* Thu Jan 12 2017 Alan Pevec <alan.pevec@redhat.com> 0.16.1-1
+- Update to 0.16.1
+
 * Mon Dec 19 2016 Alan Pevec <alan.pevec@redhat.com> 0.15.0-1
 - Update to 0.15.0
 
