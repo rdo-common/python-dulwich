@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        0.16.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
@@ -99,6 +99,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.16.0-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
+
 * Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.16.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
