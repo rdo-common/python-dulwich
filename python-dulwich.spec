@@ -5,8 +5,8 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.16.0
-Release:        4%{?dist}
+Version:        0.18.4
+Release:        1%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
@@ -99,6 +99,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Fri Oct 13 2017 Fabian Affolter <mail@fabian-affolter.ch> - 0.18.4-1
+- Update to new upstream version 0.16.0 (rhbz#*1405983)
+
 * Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.16.0-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
