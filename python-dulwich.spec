@@ -5,7 +5,7 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.18.4
+Version:        0.18.6
 Release:        1%{?dist}
 Summary:        %{sum}
 
@@ -99,6 +99,10 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Mon Nov 27 2017 Alan Pevec <alan.pevec@redhat.com> 0.18.6-1
+- Update to 0.18.6
+- Fixes CVE-2017-16228
+
 * Fri Oct 13 2017 Fabian Affolter <mail@fabian-affolter.ch> - 0.18.4-1
 - Update to new upstream version 0.16.0 (rhbz#*1405983)
 
