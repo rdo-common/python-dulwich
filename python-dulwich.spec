@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        0.18.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
@@ -99,6 +99,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Fri Feb 09 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.18.6-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
 * Mon Nov 27 2017 Alan Pevec <alan.pevec@redhat.com> 0.18.6-1
 - Update to 0.18.6
 - Fixes CVE-2017-16228
