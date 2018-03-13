@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        0.18.6
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
@@ -16,13 +16,12 @@ Source0:        https://www.dulwich.io/releases/%{srcname}-%{version}.tar.gz
 BuildRequires:  python2-devel
 BuildRequires:  python3-devel
 BuildRequires:  python2-nose
-BuildRequires:  python2-nose
-BuildRequires:  python-sphinx
-BuildRequires:  python-docutils
+BuildRequires:  python2-sphinx
+BuildRequires:  python2-docutils
 BuildRequires:  python3-sphinx
 BuildRequires:  python3-docutils
 
-%if 0%{?rhel} < 7 || 0%{?fedora} < 14
+%if (0%{?rhel} && 0%{?rhel} < 7) || (0%{?fedora} && 0%{?fedora} < 14)
 BuildRequires:  python-unittest2
 %endif
 
@@ -99,6 +98,10 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Tue Mar 13 2018 Iryna Shcherbina <ishcherb@redhat.com> - 0.18.6-3
+- Update Python 2 dependency declarations to new packaging standards
+  (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
+
 * Fri Feb 09 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.18.6-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
