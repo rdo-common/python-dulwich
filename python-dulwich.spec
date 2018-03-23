@@ -5,8 +5,8 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.18.6
-Release:        3%{?dist}
+Version:        0.19.0
+Release:        1%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
@@ -98,6 +98,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Fri Mar 23 2018 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.0-1
+- Update to new upstream version 0.19.0
+
 * Tue Mar 13 2018 Iryna Shcherbina <ishcherb@redhat.com> - 0.18.6-3
 - Update Python 2 dependency declarations to new packaging standards
   (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
