@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        0.19.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
@@ -98,6 +98,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 0.19.2-2
+- Rebuilt for Python 3.7
+
 * Sat May 05 2018 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.2-1
 - Update to new upstream version 0.19.2
 
