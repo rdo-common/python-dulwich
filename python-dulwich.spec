@@ -13,6 +13,7 @@ License:        GPLv2+ or ASL 2.0
 URL:            https://www.dulwich.io/
 Source0:        https://www.dulwich.io/releases/%{srcname}-%{version}.tar.gz
 
+BuildRequires:  gcc
 BuildRequires:  python2-devel
 BuildRequires:  python3-devel
 BuildRequires:  python2-nose
