@@ -5,7 +5,7 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.19.6
+Version:        0.19.9
 Release:        1%{?dist}
 Summary:        %{sum}
 
@@ -99,6 +99,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Sun Nov 18 2018 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.9-1
+- Update to new upstream version 0.19.9
+
 * Mon Aug 27 2018 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.6-1
 - Update to new upstream version 0.19.6
 
