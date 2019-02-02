@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        0.19.9
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
@@ -99,6 +99,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.19.9-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Sun Nov 18 2018 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.9-1
 - Update to new upstream version 0.19.9
 
