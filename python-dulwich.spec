@@ -5,13 +5,13 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.19.9
-Release:        2%{?dist}
+Version:        0.19.11
+Release:        1%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
 URL:            https://www.dulwich.io/
-Source0:        https://www.dulwich.io/releases/%{srcname}-%{version}.tar.gz
+Source0:        %pypi_source dulwich
 
 BuildRequires:  gcc
 BuildRequires:  python2-devel
@@ -60,6 +60,9 @@ Mrs. Git live in the Monty Python sketch.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+# Package provideing sphinx ext: sphinx_epytext not available
+sed -i '/sphinx_epytext/d' docs/conf.py
+
 %build
 %py2_build
 %py3_build
@@ -83,7 +86,7 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 #nosetests -e non_ascii -w dulwich/tests -v
 
 %files -n %{srcname}-core
-%doc AUTHORS README.md
+%doc AUTHORS README.rst
 %license COPYING
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
@@ -99,6 +102,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Fri Mar 1 2019 Yatin Karel <ykarel@redhat.com> - 0.19.11-1
+- Update to new upstream version 0.19.11
+
 * Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.19.9-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
